@@ -4,6 +4,8 @@ import { UserService } from './users/userService';
 import { Configu } from './users/config';
 import { UserModule } from './users/user.module';
 import { JobModule } from './jobs/jobs.module';
+import { RouterModule } from '@nestjs/core';
+import { JobsInterviewModule } from './jobs_interview/jobs_interview.module';
 
 
 
@@ -16,11 +18,12 @@ import { JobModule } from './jobs/jobs.module';
 const IS_DEV_MODE = true;
 
 @Module({
-  imports: [JobModule],
-  controllers: [],
+  imports: [JobModule,JobsInterviewModule, RouterModule.register([{path:"jobs",module: JobModule, children:[{path:"jobs-interview",module:JobsInterviewModule}]}])],
+
+controllers: [],
   // providers: [UserService, Store, { provide: "DATABASE_NAME", useValue: "MOON_KNIGHT" }, { provide: "MAIL", useValue: ["john@gmail.com", "johny@gmail.com"] }, { provide: Configu, useValue: { url: "http://localhost:3000" } }, {
   //   provide: "EVENT_STORE", useFactory: (mode:string = "dev") => {
-  //     const event = IS_DEV_MODE ? mode : "PROD"
+  // const event = IS_DEV_MODE ? mode : "PROD"
   //     return event;
   //   },
   //   inject:["MODE"]

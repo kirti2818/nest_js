@@ -3,7 +3,7 @@ import { Response } from "express";
 import { JobService } from "./jobs.service";
 import { UserService } from "src/users/userService";
 
-@Controller('jobs')
+@Controller('')
 export class JobController{
      constructor(@Inject(JobService) private jobService:JobService,@Inject(UserService) private userService:UserService){
         console.log("This is Job Controller")
@@ -11,7 +11,7 @@ export class JobController{
         console.log(this.userService)
      }
 
-     @Get("/")
+     @Get("")
      getAllJobs(@Res() res:Response){
      return res.json({message:"Get All Jobs"})
      }
